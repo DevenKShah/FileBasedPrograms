@@ -9,6 +9,8 @@ Console.WriteLine($"{courseType} Manage your {courseType}".Humanize().Pluralize(
 
 Console.WriteLine($"Select a {courseType}".Humanize());
 
+Console.WriteLine("Fails to decide between a and an. Select a animal".Humanize());
+
 public enum CourseType
 {
     Apprenticeship,
