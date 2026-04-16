@@ -1,3 +1,9 @@
+#:property PackageId=CronTab
+#:property PackAsTool=true
+#:property ToolCommandName=cron
+#:property PackageOutputPath=./nupkg
+#:property Version=1.0.1
+
 #:package NCrontab@3.4.0
 
 using NCrontab;
