@@ -2,14 +2,17 @@
 #:property ToolCommandName=run-apps
 #:property NoDefaultExcludes=true
 #:property PackageOutputPath=./nupkg
-#:property Version=1.0.1
+#:property Version=1.0.4.1
 
+/// increment the version
+/// dotnet pack RunApplications.cs --output ./nupkg --force
+/// dotnet tool install -g --add-source ./nupkg RunApplications
 
 
 using System;
 using System.Diagnostics;
 
-Console.WriteLine("Running applications 1.0.1");
+Console.WriteLine($"Running applications {typeof(Program).Assembly.GetName().Version}");
 
 var rootDir = @"C:\Git\Esfa\";
 const string terminalName = nameof(terminalName);
@@ -52,6 +55,6 @@ if (runFAT)
 var runAdmin = args.Contains("admin", StringComparer.OrdinalIgnoreCase);
 if (runAdmin)
 {
-    Process.Start("wt", $"wt -w {terminalName} nt --title \"5005 Admin Outer\" -d \"{rootDir}das-apim-endpoints\\src\\Admin\\SFA.DAS.Admin.Api\" -c dotnet run {release} {noRestore}");
-    Process.Start("wt", $"wt -w {terminalName} nt --title \"5006 Admin Web\" -d \"{rootDir}das-admin\\src\\SFA.DAS.Admin.Web\" -c dotnet run {release} {noRestore}");
+    Process.Start("wt", $"wt -w {terminalName} nt --title \"5005 Admin Outer\" -d \"{rootDir}das-apim-endpoints\\src\\AdminRoatp\\SFA.DAS.AdminRoatp.Api\" -c dotnet run {release} {noRestore}");
+    Process.Start("wt", $"wt -w {terminalName} nt --title \"5006 Admin Web\" -d \"{rootDir}das-admin-roatp-web\\src\\SFA.DAS.Admin.Roatp.Web\" -c dotnet run {release} {noRestore}");
 }
