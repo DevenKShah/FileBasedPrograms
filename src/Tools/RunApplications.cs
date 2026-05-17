@@ -2,7 +2,7 @@
 #:property ToolCommandName=run-apps
 #:property NoDefaultExcludes=true
 #:property PackageOutputPath=./nupkg
-#:property Version=1.0.4.1
+#:property Version=1.0.4.2
 
 /// increment the version
 /// dotnet pack RunApplications.cs --output ./nupkg --force
@@ -31,10 +31,16 @@ if (changedRootDir)
     rootDir = string.IsNullOrWhiteSpace(dir) ? rootDir : dir.Trim();
 }
 
-Process.Start("wt", $"-w {terminalName} nt --title \"5111 RoatpV2 API Inner\" -d \"{rootDir}das-roatp-api\\src\\SFA.DAS.RoATP.Api\" -c dotnet run --release {noRestore}");
-Process.Start("wt", $"-w {terminalName} nt --title \"37952 RoATP Service\" -d \"{rootDir}das-roatp-service\\src\\SFA.DAS.RoATPService.Application.Api\" -c dotnet run --release {noRestore}");
-Process.Start("wt", $"-w {terminalName} nt --title \"5008 LocApi\" -d \"{rootDir}das-location-api\\src\\SFA.DAS.Location.Api\" -c dotnet run --release {noRestore}");
-Process.Start("wt", $"-w {terminalName} nt --title \"5011 CrsInApi\" -d \"{rootDir}das-courses-api\\src\\SFA.DAS.Courses.Api\" -c dotnet run --release {noRestore}");
+if (args.Contains("courses", StringComparer.OrdinalIgnoreCase))
+{
+    Process.Start("wt", $"-w {terminalName} nt --title \"5011 CrsInApi\" -d \"{rootDir}das-courses-api\\src\\SFA.DAS.Courses.Api\" -c dotnet run {release} {noRestore}");
+    return;
+}
+
+Process.Start("wt", $"-w {terminalName} nt --title \"5111 RoatpV2 API Inner\" -d \"{rootDir}das-roatp-api\\src\\SFA.DAS.RoATP.Api\" -c dotnet run {release} {noRestore}");
+Process.Start("wt", $"-w {terminalName} nt --title \"37952 RoATP Service\" -d \"{rootDir}das-roatp-service\\src\\SFA.DAS.RoATPService.Application.Api\" -c dotnet run {release} {noRestore}");
+Process.Start("wt", $"-w {terminalName} nt --title \"5008 LocApi\" -d \"{rootDir}das-location-api\\src\\SFA.DAS.Location.Api\" -c dotnet run {release} {noRestore}");
+Process.Start("wt", $"-w {terminalName} nt --title \"5011 CrsInApi\" -d \"{rootDir}das-courses-api\\src\\SFA.DAS.Courses.Api\" -c dotnet run {release} {noRestore}");
 
 // Console.WriteLine("Do you want to run the Course Management? (Y/N)");
 // var runCourseManagement = Console.ReadKey().Key == ConsoleKey.Y;

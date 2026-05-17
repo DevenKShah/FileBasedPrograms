@@ -2,6 +2,9 @@
 
 using Humanizer;
 
+Enumerable.Range(1, 3).ToList().ForEach(i => Console.WriteLine("training provider".ToQuantity(i)));
+
+Console.WriteLine($"".Humanize());
 
 CourseType courseType = CourseType.ApprenticeshipUnit;
 
